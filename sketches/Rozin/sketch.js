@@ -42,8 +42,7 @@ function draw() {
         translate(capture.width, 0);
         scale(-1, 1);
         
-        // if(brightness > 100)
-        //   rotate(brightness/PI);
+          rotate(PI/brightness);
         rect(x, y, size, size);
       pop();
       
