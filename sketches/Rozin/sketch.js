@@ -4,7 +4,7 @@ let capture;
 
 function setup() {
   let c = createCanvas(w, h);
-  c.parent("#sketch-parent")
+  c.parent("#sketch-parent");
   pixelDensity(1);
   capture = createCapture(VIDEO);
   capture.size(w, h);
@@ -49,7 +49,7 @@ function draw() {
       
     }
   }
-  capture.updatePixels();
+  // capture.updatePixels();
   
   //image(capture, 0, 0);
 }
