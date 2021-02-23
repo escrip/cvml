@@ -75,6 +75,7 @@ function draw() {
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
     }
+    image(brushCanvas, 0, 0);
   pop();
   //capture.updatePixels();
 }
