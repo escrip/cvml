@@ -74,8 +74,9 @@ function draw() {
       brushCanvas.line(avgPos.x, avgPos.y, prevPos.x, prevPos.y);
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
-      brushCanvas.ellipse(w/2, h/2);
     }
+    brushCanvas.ellipse(w/2, h/2, trackColor[0]);
+    brushCanvas.color(brushColor);
     image(brushCanvas, 0, 0)
 
   pop();
