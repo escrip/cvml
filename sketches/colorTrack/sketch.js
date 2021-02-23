@@ -76,14 +76,14 @@ function draw() {
       //ellipse(closestPos.x, closestPos.y, 20, 20);
     }
 
-    brushCanvas.ellipse(w/2, h/2, trackColor[0]);
+    brushCanvas.ellipse(w/2, h/2);
     brushCanvas.color(255, 0, 0);
     image(brushCanvas, 0, 0)
 
   pop();
 
 
-  //capture.updatePixels();
+  capture.updatePixels();
 }
 
 function mousePressed() {
