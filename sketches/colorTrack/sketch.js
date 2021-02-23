@@ -45,38 +45,39 @@ function draw() {
       let trackB = trackColor[2];
 
       //calculate the color distance between the current pixel
-      //and the trackColor. dist() calculates euclidean distance between two points
+      //and the trackColor. dist() calculates euclidean distance between         two points
 
       let distance = dist(r, g, b, trackR, trackG, trackB);
 
       if(distance < threshold){
         //threshold = distance;
         avgPos.x +=x;
-        avgPos.y +=y;
+        avgPos.y+=y;
         count++;
       }
     }
   }
 
   push();
-    //mirrors camera so it doesnt look weird
     translate(capture.width, 0);
     scale(-1, 1);
     image(capture, 0, 0);
-
     if(count > 5){
       avgPos.x = avgPos.x/count;
       avgPos.y = avgPos.y/count;
 
       fill(255, 0, 0);
       brushCanvas.stroke(brushColor);
-      brushCanvas.strokeWeight(10);
+      brushCanvas.strokeWeight(3);
       brushCanvas.line(avgPos.x, avgPos.y, prevPos.x, prevPos.y);
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
     }
-    image(brushCanvas, 0, 0);
+    image(brushCanvas, 0, 0)
+
   pop();
+
+
   //capture.updatePixels();
 }
 
