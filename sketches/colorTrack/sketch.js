@@ -76,8 +76,6 @@ function draw() {
       //ellipse(closestPos.x, closestPos.y, 20, 20);
     }
   pop();
-
-
   //capture.updatePixels();
 }
 
@@ -89,5 +87,3 @@ function keyPressed() {
   if(key == 'c')
     brushCanvas.clear();
 }
-
-//test
