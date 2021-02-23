@@ -45,7 +45,7 @@ function draw() {
       let trackB = trackColor[2];
 
       //calculate the color distance between the current pixel
-      //and the trackColor. dist() calculates euclidean distance between         two points
+      //and the trackColor. dist() calculates euclidean distance between two points
 
       let distance = dist(r, g, b, trackR, trackG, trackB);
 
@@ -75,8 +75,9 @@ function draw() {
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
     }
+
     brushCanvas.ellipse(w/2, h/2, trackColor[0]);
-    brushCanvas.color(brushColor);
+    brushCanvas.color(255, 0, 0);
     image(brushCanvas, 0, 0)
 
   pop();
