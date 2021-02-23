@@ -21,7 +21,7 @@ function draw() {
   //background(255);
 
   //let record = 500;
-  let brushColor = color(trackColor[0], trackColor[1], trackColor[3]);
+  let brushColor = color(trackColor[0], trackColor[1], trackColor[2]);
 
   // let closestX = 0;
   // let closestY = 0;
@@ -59,16 +59,18 @@ function draw() {
   }
 
   push();
+    //mirrors camera so it doesnt look weird
     translate(capture.width, 0);
     scale(-1, 1);
     image(capture, 0, 0);
+
     if(count > 5){
       avgPos.x = avgPos.x/count;
       avgPos.y = avgPos.y/count;
 
       fill(255, 0, 0);
       brushCanvas.stroke(brushColor);
-      brushCanvas.strokeWeight(50);
+      brushCanvas.strokeWeight(10);
       brushCanvas.line(avgPos.x, avgPos.y, prevPos.x, prevPos.y);
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
