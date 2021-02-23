@@ -70,7 +70,7 @@ function draw() {
 
       fill(255, 0, 0);
       brushCanvas.stroke(brushColor);
-      brushCanvas.strokeWeight(10);
+      brushCanvas.strokeWeight(trackColor[3]);
       brushCanvas.line(avgPos.x, avgPos.y, prevPos.x, prevPos.y);
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
