@@ -29,7 +29,7 @@ function draw() {
   let count = 0;
 
   capture.loadPixels();
-  // let threshold = 127;
+  //let threshold = 127;
   //let threshold = map(mouseX, 0, width, 0, 255, true);
 
   for(let y = 0; y < capture.height; y++) {
@@ -52,7 +52,7 @@ function draw() {
       if(distance < threshold){
         //threshold = distance;
         avgPos.x +=x;
-        avgPos.y+=y;
+        avgPos.y +=y;
         count++;
       }
     }
@@ -70,7 +70,7 @@ function draw() {
 
       fill(255, 0, 0);
       brushCanvas.stroke(brushColor);
-      brushCanvas.strokeWeight(trackColor[0]);
+      brushCanvas.strokeWeight(10);
       brushCanvas.line(avgPos.x, avgPos.y, prevPos.x, prevPos.y);
       prevPos = avgPos;
       //ellipse(closestPos.x, closestPos.y, 20, 20);
