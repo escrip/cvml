@@ -1,27 +1,56 @@
 let particles = [];
+let w = 600;
+let h = 600;
+let capture;
 
 function setup() {
-  createCanvas(600, 600);
-  
+  createCanvas(w, h);
+  //pixelDensity(1);
+
   for(let i = 0; i < 1500; i++){
     let p = new Particle();
     particles.push(p);
   }
-  //print(particles);
+  
+  capture = createCapture(VIDEO);
+  capture.size(w, h);
+  capture.hide();
 }
 
 function draw() {
   background(0, 100);
   noStroke();
   
+  capture.loadPixels();
+
   for(let i = 0; i < particles.length; i++) {
     let p = particles[i];
-    
+
+    let x = p.pos.x;
+    let y = p.pos.y;
+
+    let index = (x + y*width)*4;
+
+    let r = capture.pixels[index]
+    let g = capture.pixels[index+1]
+    let b = capture.pixels[index+2]
+
+    let videoPixelColor = color(r, g, b);
+
+    p.color = videoPixelColor;
     p.draw();
     p.update();
   }
+
   let p = new Particle();
   particles.push(p);
+
+  push();
+    translate(capture.width, 0);
+    scale(-1, 1);
+  pop();
+
+  capture.updatePixels();
 }
 
 class Particle {
@@ -34,7 +63,7 @@ class Particle {
     //this.vel = p5.Vector.random2D().mult(random(0,2));
     //let randomExp = random(1, 10);
     this.acc = createVector(0, .01);
-    this.color = color(random(255), random(255), random(255));
+    //this.color = color(random(255), random(255), random(255));
     this.size = 5;
     //this.drag = .999;
   }
