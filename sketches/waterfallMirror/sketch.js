@@ -5,22 +5,20 @@ let capture;
 
 function setup() {
   createCanvas(w, h);
-  //pixelDensity(1);
-
+  pixelDensity(1);
+  capture = createCapture(VIDEO);
+  capture.size(w, h);
+  capture.hide();
   for(let i = 0; i < 1500; i++){
     let p = new Particle();
     particles.push(p);
   }
-  
-  capture = createCapture(VIDEO);
-  capture.size(w, h);
-  capture.hide();
 }
 
 function draw() {
   background(0, 100);
   noStroke();
-  
+
   capture.loadPixels();
 
   for(let i = 0; i < particles.length; i++) {
@@ -29,13 +27,15 @@ function draw() {
     let x = p.pos.x;
     let y = p.pos.y;
 
-    let index = (x + y*width)*4;
+    let index = (x + y * width) * 4;
 
-    let r = capture.pixels[index]
-    let g = capture.pixels[index+1]
-    let b = capture.pixels[index+2]
+    let r = capture.pixels[index];
+    let g = capture.pixels[index+1];
+    let b = capture.pixels[index+2];
 
     let videoPixelColor = color(r, g, b);
+
+
 
     p.color = videoPixelColor;
     p.draw();
