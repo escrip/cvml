@@ -4,11 +4,11 @@ let h = 600;
 let capture;
 
 function setup() {
-  createCanvas(w, h);
   pixelDensity(1);
   capture = createCapture(VIDEO);
   capture.size(w, h);
   capture.hide();
+  createCanvas(capture.width, capture.height);
   for(let i = 0; i < 1500; i++){
     let p = new Particle();
     particles.push(p);
@@ -27,23 +27,18 @@ function draw() {
     let x = p.pos.x;
     let y = p.pos.y;
 
-    let index = (x + y * width) * 4;
+    const index = (x + y * width) * 4;
 
     let r = capture.pixels[index];
     let g = capture.pixels[index+1];
     let b = capture.pixels[index+2];
 
-    let videoPixelColor = color(r, g, b);
+    let c = color(r, g, b);
 
-
-
-    p.color = videoPixelColor;
+    p.color = c;
     p.draw();
     p.update();
   }
-
-  let p = new Particle();
-  particles.push(p);
 
   push();
     translate(capture.width, 0);
@@ -99,10 +94,10 @@ class Particle {
     
     
     // loop particle back to top
-    // if(this.pos.y > height) {
-    //   this.pos.y = 0;
-    //   this.vel = createVector(random(-1, 1), random(-1, 1));
-    // }
+    if(this.pos.y > height) {
+      this.pos.y = 0;
+      this.vel = createVector(random(-1, 1), random(-1, 1));
+    }
   }
   
   draw() {
