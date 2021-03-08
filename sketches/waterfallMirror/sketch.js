@@ -1,14 +1,14 @@
 let particles = [];
-let w = 600;
-let h = 600;
+let w = 640;
+let h = 480;
 let capture;
 
 function setup() {
+  createCanvas(w, h);
   pixelDensity(1);
   capture = createCapture(VIDEO);
   capture.size(w, h);
   capture.hide();
-  createCanvas(capture.width, capture.height);
   for(let i = 0; i < 1500; i++){
     let p = new Particle();
     particles.push(p);
@@ -35,15 +35,16 @@ function draw() {
 
     let c = color(r, g, b);
 
-    p.color = c;
-    p.draw();
-    p.update();
-  }
+    
+    push();
+      translate(capture.width, 0);
+      scale(-1, 1);
+      p.color = c;
+      p.draw();
+    pop();
 
-  push();
-    translate(capture.width, 0);
-    scale(-1, 1);
-  pop();
+  p.update();
+  }
 
   capture.updatePixels();
 }
