@@ -17,7 +17,7 @@ function setup() {
 }
 
 function draw() {
-  background(128, 128, 128);
+  background(0);
   noStroke();
 
   capture.loadPixels();
