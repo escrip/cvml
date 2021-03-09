@@ -4,7 +4,8 @@ let h = 480;
 let capture;
 
 function setup() {
-  createCanvas(w, h);
+  let canvas = createCanvas(w, h);
+  canvas.parent('#sketch-parent');
   pixelDensity(1);
   capture = createCapture(VIDEO);
   capture.size(w, h);
@@ -21,32 +22,36 @@ function draw() {
 
   capture.loadPixels();
 
-  for(let i = 0; i < particles.length; i++) {
-    let p = particles[i];
+  if(capture.pixels.length > 0) {
+    for(let i = 0; i < particles.length; i++) {
+      let p = particles[i];
 
-    let x = p.pos.x;
-    let y = p.pos.y;
+      let x = floor(p.pos.x);
+      let y = floor(p.pos.y);
 
-    const index = (x + y * width) * 4;
+      const index = (x + y * width) * 4;
 
-    let r = capture.pixels[index];
-    let g = capture.pixels[index+1];
-    let b = capture.pixels[index+2];
+      let r = capture.pixels[index];
+      let g = capture.pixels[index+1];
+      let b = capture.pixels[index+2];
+      
 
-    let c = color(r, g, b);
+      let c = color(r, g, b);
+
+      p.color = c;
+      push();
+        translate(capture.width, 0);
+        scale(-1, 1);
+        p.draw();
+      pop();
+      
+      p.update();
+    }
 
     
-    push();
-      translate(capture.width, 0);
-      scale(-1, 1);
-      p.color = c;
-      p.draw();
-    pop();
 
-  p.update();
+    capture.updatePixels();
   }
-
-  capture.updatePixels();
 }
 
 class Particle {
@@ -59,7 +64,7 @@ class Particle {
     //this.vel = p5.Vector.random2D().mult(random(0,2));
     //let randomExp = random(1, 10);
     this.acc = createVector(0, .01);
-    //this.color = color(random(255), random(255), random(255));
+    this.color = color(0, 0, 0);
     this.size = 5;
     //this.drag = .999;
   }
