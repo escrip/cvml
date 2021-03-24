@@ -2,8 +2,8 @@
 computer vision &amp; machine learning
 
 
-##Rozin Mirror
+## Rozin Mirror
 
-##colorTrack
+## colorTrack
 
-##waterfallMirror
+## waterfallMirror
