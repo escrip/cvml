@@ -48,8 +48,6 @@ function draw() {
       p.update();
     }
 
-    
-
     capture.updatePixels();
   }
 }
